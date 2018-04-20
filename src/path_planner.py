@@ -300,7 +300,7 @@ def test_fk():
 
     pose = path_planner.get_fk(joints)
 
-    print pose
+    print (pose)
 
 
 def plan_path(req):
@@ -313,7 +313,7 @@ def plan_path(req):
 def plan_path_server():
     # rospy.init_node('add_two_ints_server')
     s = rospy.Service('plan_path', PathFromPose, plan_path)
-    print "Ready to plan a path."
+    print ("Ready to plan a path.")
     rospy.spin()
 
 
