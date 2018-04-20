@@ -75,7 +75,7 @@ class PathPlanner(object):
         joint_state.header.stamp = rospy.Time.now()
         # the robot has a dumb base_link joint that we don't want
         joint_state.name = self.group.get_joints()[1:-1]
-        print joint_state.name
+        print (joint_state.name)
         joint_state.position = end_state
 
         self.group.set_start_state_to_current_state()
@@ -281,8 +281,8 @@ def test_ik():
     raw_input("Press Enter to run inverse kinematics")
     joints = path_planner.get_ik(pose)
 
-    print 'input:' + str(joints_old)
-    print 'solution:' + str(joints)
+    print ('input:' + str(joints_old))
+    print ('solution:' + str(joints))
 
     raw_input("Press Enter to move to position")
     plan = path_planner.plan_to_config(joints)
@@ -304,8 +304,11 @@ def test_fk():
 
 
 def plan_path(req):
-    print "Returning [%s + %s = %s]"%(req.a, req.b, (req.a + req.b))
-    return AddTwoIntsResponse(req.a + req.b)
+    print (req.pose)
+    return("plan_path called")
+    pass
+    # print "Returning [%s + %s = %s]"%(req.a, req.b, (req.a + req.b))
+    # return AddTwoIntsResponse(req.a + req.b)
 
 def plan_path_server():
     # rospy.init_node('add_two_ints_server')
