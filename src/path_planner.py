@@ -304,8 +304,15 @@ def test_fk():
 
 
 def plan_path(req):
-    print (req.pose)
-    return("plan_path called")
+    # print (req.pose)
+    path_planner = PathPlanner()
+    joints = path_planner.get_ik(req.pose)
+    print("Joints: ", joints)
+    raw_input("Press Enter to move to position")
+    plan = path_planner.plan_to_config(joints)
+    # return path_planner.execute_path(plan)
+    return plan
+
     pass
     # print "Returning [%s + %s = %s]"%(req.a, req.b, (req.a + req.b))
     # return AddTwoIntsResponse(req.a + req.b)
@@ -318,7 +325,7 @@ def plan_path_server():
 
 
 def run_node():
-    path_planner = PathPlanner()
+    # path_planner = PathPlanner()
     plan_path_server()
 
 if __name__ == '__main__':
