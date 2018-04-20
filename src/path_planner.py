@@ -10,6 +10,8 @@ from trac_ik_python.trac_ik import IK
 from moveit_msgs.srv import GetPositionFK
 from std_msgs.msg import Header
 
+from haptica_manipulation.srv import PathFromPose
+
 import sys
 import numpy as np
 
@@ -300,13 +302,31 @@ def test_fk():
 
     print pose
 
+
+def plan_path(req):
+    print "Returning [%s + %s = %s]"%(req.a, req.b, (req.a + req.b))
+    return AddTwoIntsResponse(req.a + req.b)
+
+def plan_path_server():
+    # rospy.init_node('add_two_ints_server')
+    s = rospy.Service('plan_path', PathFromPose, plan_path)
+    print "Ready to plan a path."
+    rospy.spin()
+
+
+def run_node():
+    path_planner = PathPlanner()
+    plan_path_server()
+
 if __name__ == '__main__':
     rospy.init_node('kinova_controller')
+    run_node()
+
 
     # if len(sys.argv) > 1:
     #     filename = sys.argv[1]
 
-    test_ik()
+    # test_ik()
 
 
 

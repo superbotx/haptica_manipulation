@@ -1,0 +1,5 @@
+# request params
+geometry_msgs/Pose pose
+---
+# response params
+string str
