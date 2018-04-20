@@ -1,0 +1,5 @@
+<launch>
+  
+  <node name="path_planner" launch-prefix="python2" pkg="haptica_manipulation" type="path_planner.py" output="screen" >
+  </node>
+</launch>
